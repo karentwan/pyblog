@@ -1,0 +1,25 @@
+* {
+    margin:0;
+}
+
+/************************************通用设置*/
+ul {
+    padding:0;
+}
+
+li {
+    list-style: none;
+}
+
+a,
+a:hover,
+a:focus{
+    text-decoration: none;
+    color: #5e5e5e;
+}
+
+.clear {
+    clear:both;
+}
+
+/********************************************end***************/

@@ -1,0 +1,118 @@
+/*.header {*/
+    /*width: 90%;*/
+    /*!*这行代码可以使div水平居中*!*/
+    /*margin: 0 auto;*/
+/*}*/
+.header .navbar {
+    padding-left:10%;
+    padding-right:10%;
+}
+
+.header-search {
+    /*display: inline-block;*/
+}
+.header .navbar-form {
+    margin:0;
+}
+
+.mid {
+    padding-left:10%;
+    padding-right:10%;
+    min-height: 600px;
+}
+
+.mid .left {
+    float:left;
+    width:72%;
+    /*background-color: #6dffa1;*/
+}
+.mid .left .newslabel {
+    border-bottom: 3px solid #c7ddef;
+    padding-bottom:15px;
+}
+
+.mid .left .news-list {
+    padding:0;
+}
+
+.mid .left .list-item {
+    display: block;
+    list-style: none;
+    padding-top:5px;
+    padding-bottom:5px;
+    border-bottom: 1px solid #c7ddef;
+
+}
+.mid .left .list-item a {
+    text-decoration: none;
+    color: #5e5e5e;
+}
+.mid .left .list-item .label {
+    margin-left:20px;
+    color: #5e5e5e;
+}
+
+
+.mid .right {
+    float:right;
+    /*height: 300px;*/
+    width:28%;
+    padding-left:10px;
+    /*background-color: #ff7856;*/
+}
+.mid .right .special {
+    font-size:18px;
+    min-height:300px;
+}
+
+.mid .right .special .list-item {
+    border-bottom: 1px solid #c7ddef;
+    padding-top:10px;
+    padding-bottom:5px;
+}
+.mid .right .special .spe-label {
+    border-bottom: 2px solid #c7ddef;
+    padding-bottom:10px;
+    margin-bottom:0;
+}
+
+.mid .right .special .spe-des {
+    color:#695151;
+    position:relative;
+    top:-1px;
+}
+
+
+.mid .right .special .spe-detail {
+    font-size:12px;
+    color: #666c72;
+    position:relative;
+    top:6px;
+    right:-33px;
+}
+
+.mid .right .about {
+    margin-top:30px;
+}
+.mid .right .about .ab-label {
+    border-bottom: 2px solid #c7ddef;
+    padding-bottom:10px;
+}
+
+.mid .right .about li {
+    padding-bottom:5px;
+}
+
+.footer {
+    height:60px;
+    border-top:1px solid #e7e7e7;
+    background-color: #f8f8f8;
+    position:relative;
+}
+.footer p {
+    position:absolute;
+    top:30%;
+    left:40%;
+}
+
+

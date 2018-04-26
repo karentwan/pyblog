@@ -1,0 +1,100 @@
+
+.mid {
+    min-height: 600px;
+    padding-left:10%;
+    padding-right:10%;
+    /*background-color: #f8f8f8;*/
+}
+.header .navbar {
+    padding-left:10%;
+    padding-right:10%;
+}
+
+.header-search {
+    /*display: inline-block;*/
+}
+.header .navbar-form {
+    margin:0;
+}
+
+.mid .left .cus-label {
+    border-bottom:1px solid #c7ddef;
+    margin:0;
+    /*height:10px;*/
+    margin-bottom:10px;
+}
+
+.mid .left .cus-label li {
+    float:left;
+    padding:10px;
+    margin-top:-1px;
+}
+
+.mid .left .active {
+    /*float可以和relative连用*/
+    border:1px solid #c7ddef;
+    background-color: #fff;
+    /*border-bottom: none;*/
+    border-bottom-color: transparent;
+    position: relative;
+    margin-bottom: -1px;
+}
+.mid .left .cus-list .list-item {
+    border-bottom:1px solid #c7ddef;
+    margin-top:10px;
+
+}
+.mid .left .cus-list .list-item .great {
+    float:left;
+    border: 1px solid #c7ddef;
+    padding:3px 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+.mid .left .cus-list .list-item .brief {
+    margin-left:20px;
+    float:left;
+    width:80%;
+
+}
+.mid .left .cus-list .list-item .brief .cus-infor span {
+    color:#999;
+}
+.mid .left .cus-list .list-item .brief .cus-infor .author ,
+.mid .left .cus-list .list-item .brief .cus-infor .category{
+    color:#009a61;
+}
+
+.mid .left .cus-list .list-item .brief .bri-label {
+    color:#F2AE43;
+    background-color: rgba(242,174,67,0.25);
+    border-radius: 8px;
+    margin-left:5px;
+    padding:1px 7px;
+}
+.mid .left .cus-list .list-item .brief .cus-title {
+    font-size:18px;
+
+}
+.mid .left .cus-list .list-item .brief .cus-infor {
+    font-size:12px;
+}
+.mid .left .cus-list .list-item .brief > div {
+    margin-bottom:5px;
+}
+
+.mid .left .cus-list .list-item .cus-brief {
+}
+
+
+.footer {
+    height:60px;
+    border-top:1px solid #e7e7e7;
+    background-color: #f8f8f8;
+    position:relative;
+}
+.footer p {
+    position:absolute;
+    top:30%;
+    left:40%;
+}

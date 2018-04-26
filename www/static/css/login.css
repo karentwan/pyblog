@@ -1,0 +1,22 @@
+
+form {
+    width:600px;
+    height:400px;
+    margin:50px auto;
+    padding:50px;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    font-family: "微软雅黑";
+    box-shadow: 10px 5px 70px #0d957a;
+}
+.form-group > h2 {
+    text-align: center;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.form-group .cus-btn {
+    width:100%;
+}
