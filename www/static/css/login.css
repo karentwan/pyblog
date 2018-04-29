@@ -20,3 +20,22 @@ a:hover {
 .form-group .cus-btn {
     width:100%;
 }
+
+.warning,
+.null-warning,
+.nomatching-warning{
+    /*position : relative;*/
+    /*left:11%;*/
+    margin-top:6px;
+    color:red;
+}
+
+.username-valid,
+.password-valid,
+.confirm-valid{
+    color: red;
+    position:relative;
+    font-size: 18px;
+    top:2px;
+    display: inline-block;
+}

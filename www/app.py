@@ -1,7 +1,8 @@
 from flask import Flask
 from flask import request
-from flask import render_template, session
+from flask import render_template, session, redirect,url_for
 from flask import send_file
+import json
 import db,util
 '''
 网站的入口，所有的url都将转到这里面
@@ -9,7 +10,8 @@ import db,util
 存在同一级目录下面
 '''
 app = Flask(__name__)
-
+#使用session需要这个秘钥
+app.secret_key = '123456'
 # 首页
 @app.route('/index', methods=['GET'])
 def getIndex():
@@ -17,8 +19,13 @@ def getIndex():
           'from article as a left join user as u on a.autorid = u.id left join ' \
           'category as c on a.categoryid = c.id;'
     values = db.select(sql)
+    user = session.get('user')
+    username = None
+    if user:
+        username=user['username']
+        print('username:%s'%(username))
     print(values)
-    return render_template("index.html", articles=values)
+    return render_template("index.html", username=username, articles=values)
 
 '''
 获取文章列表
@@ -42,6 +49,19 @@ def loginview():
 def registerview():
     return render_template('register.html')
 
+@app.route('/hasUser', methods=['POST'])
+def hasUser():
+    # post请求需要使用下面这种方式取值
+    username = request.form.get('username')
+    sql = "select id from user where username=%s"
+    value = db.findOneByCondition(sql, username)
+    print(value)
+    print(username)
+    if value:
+        return json.dumps({'code': 200})
+    return json.dumps({'code': 201})
+
+
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form.get('username')
@@ -56,14 +76,23 @@ def login():
         return send_file('static/fail.html')
     if util.cmp_password(password, value[2]):
         # 存cookie
-        session['user'] = {'userid':id}
-        return render_template('index.html', username=value[1])
+        obj = {'userid':value[0], 'username':value[1]}
+        session['user'] = obj
+        print('username:%s'%(value[1]))
+        return redirect('/index')
     return send_file('static/fail.html')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/index')
 
 @app.route('/register', methods=['POST'])
 def register():
     username = request.form.get('username')
     password = request.form.get('password')
+    if not username or not password:
+        return send_file('static/fail.html')
     ecode = util.MD5(password)
     sql = "insert into user values(null, %s, %s)"
     count = db.insert(sql, username, password)

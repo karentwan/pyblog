@@ -25,4 +25,5 @@ def MD5(str):
 '''
 def cmp_password(str1, str2):
     encode = MD5(str1)
+    # print('encode:%s'%(encode))
     return encode == str2
