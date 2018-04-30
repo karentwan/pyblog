@@ -22,15 +22,15 @@
             <ul class="news-list">
                 {% for article in articles%}
                 <li class="list-item">
-                    <h4><a href="/detail?id={{article[4]}}">{{article[0]}}</a></h4>
+                    <h4><a href="/detail?id={{article['articleId']}}">{{article['title']}}</a></h4>
                     <!--信息-->
                     <div class="infor">
                         <span >作者：</span>
-                        <span>{{article[2]}}</span>
+                        <span>{{article['username']}}</span>
                         <span class="label">分类：</span>
-                        <span>{{article[3]}}</span>
+                        <span>{{article['catename']}}</span>
                         <span class="label">时间：</span>
-                        <span>{{article[1]}}</span>
+                        <span>{{article['time']}}</span>
                     </div>
                 </li>
                 {% endfor %}

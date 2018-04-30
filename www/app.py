@@ -40,10 +40,36 @@ def getIndex():
     if user:
         username=user['username']
         print('username:%s'%(username))
-    print(values)
+    # print(values)
+    def func(temp, value):
+        for i, item in enumerate(value):
+            if i == 0:
+                temp['title'] = item
+            elif i == 1:
+                print("time:", item)
+                temp['time'] = util.timestamp2time(item)
+            elif i == 2:
+                temp['username'] = item
+            elif i == 3:
+                temp['catename'] = item
+            else:
+                temp['articleId'] = item
+    content = processValues(values, func)
+    return render_template("index.html", articles=content)
 
-    return render_template("index.html", articles=values)
 
+'''
+将从数据库里面查询出来的内容
+进行处理，处理的方法为func函数
+'''
+def processValues(values, func):
+    content = []
+    for value in values:
+        print(value)
+        temp = dict()
+        func(temp, value)
+        content.append(temp)
+    return content
 '''
 获取文章列表
 '''
@@ -53,8 +79,30 @@ def list():
           'from article as a left join user as u ' \
           'on a.autorid = u.id left join category as c on a.categoryid = c.id';
     values = db.select(sql)
-    print(values)
-    return render_template("list.html", list=values)
+    # print(values)
+    def func(temp, value):
+        # 多下标方式
+        for i, item in enumerate(value):
+            if i == 0:
+                temp['articleId'] = item
+            elif i == 1:
+                print("time:", item)
+                temp['title'] = item
+            elif i == 2:
+                temp['time'] = util.timestamp2time(item)
+            elif i == 3:
+                temp['username'] = item
+            elif i == 4:
+                temp['catename'] = item
+            elif i == 5:
+                temp['great'] = item
+            elif i == 6:
+                temp['brief'] = item
+            else:
+                temp['subcate'] = item
+    content = processValues(values,func)
+    # print(content)
+    return render_template("list.html", list=content)
 
 # 登录注册界面
 @app.route('/loginview', methods=['GET'])

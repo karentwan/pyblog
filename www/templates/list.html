@@ -39,12 +39,12 @@
                     <li class="list-item">
                         <!--点赞-->
                         <div class="great">
-                            <a href="javascript:void(0)" onclick="great(this, {{item[0]}})">
+                            <a href="javascript:void(0)" onclick="great(this, {{item['articleId']}})">
                                 <div>
                                     <i class="glyphicon glyphicon-chevron-up"> </i>
                                 </div>
                                 <div>
-                                <span class="num">{{item[5]}}</span>
+                                <span class="num">{{item['great']}}</span>
                             </div>
                             </a>
                         </div>
@@ -53,24 +53,24 @@
                             <!--标题-->
                             <div>
                                 <span class="cus-title">
-                                    <a href="/detail?id={{item[0]}}">
-                                        {{item[1]}}
+                                    <a href="/detail?id={{item['articleId']}}">
+                                        {{item['title']}}
                                     </a>
                                 </span>
                                 <span class="bri-label">
-                                    {{item[7]}}
+                                    {{item['subcate']}}
                                 </span>
                             </div>
                             <!--信息-->
                             <div class="cus-infor">
-                                <span class="author">{{item[3]}}</span>
-                                <span>{{item[2]}}</span>
+                                <span class="author">{{item['username']}}</span>
+                                <span>{{item['time']}}</span>
                                 <span>发布于</span>
-                                <span class="category">{{item[4]}}</span>
+                                <span class="category">{{item['catename']}}</span>
                             </div>
                             <!--简介-->
                             <div class="cus-brief">
-                                {{item[6]}}
+                                {{item['brief']}}
                             </div>
                         </div>
                         <div class="clear"></div>
