@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from flask import render_template, session, redirect,url_for
 from flask import send_file
+import functools
 import json
 import db,util
 '''
@@ -12,6 +13,21 @@ import db,util
 app = Flask(__name__)
 #使用session需要这个秘钥
 app.secret_key = '123456'
+
+'''
+验证用户是否登录
+'''
+def verify(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kw):
+        user = session.get('user')
+        if not user:
+            return redirect('/loginview')
+        print(args, kw)
+        return func(*args, **kw)
+    return wrapper
+
+
 # 首页
 @app.route('/index', methods=['GET'])
 def getIndex():
@@ -89,10 +105,9 @@ def logout():
     return redirect('/index')
 
 @app.route('/comment', methods=["POST"])
+@verify
 def comment():
     user = session.get('user')
-    if not user:
-        return redirect("/loginview")
     content = request.form.get("comment")
     articleId = request.form.get("articleId")
     pid = request.form.get('pid')
@@ -100,6 +115,7 @@ def comment():
         pid = 0
     uid = user['userid']
     print("uid, articleId, content", (uid, articleId, content, pid))
+    # python的数据库操作全用%s占位，用其他的会报错
     sql = "insert into comment values(null, %s, %s, %s, %s)"
     count = db.insert(sql, content, pid, articleId, uid)
     print("cout:%s"%(count))
@@ -120,6 +136,21 @@ def register():
         return send_file('static/success.html')
     return send_file('static/fail.html')
 
+# 点赞
+@app.route('/great', methods=['GET'])
+@verify
+def great():
+    user = session.get('user')
+    uid = user['userid']
+    #get方法使用这个函数获取参数，post函数使用request.form.get()获取参数
+    articleId = request.args.get('id')
+    print("点赞函数开始执行-----：%s"%(articleId))
+    sql = "update article set great = great + 1 where id = %s"
+    count = db.insert(sql, articleId)
+    print("点赞", count)
+    if count > 0:
+        return json.dumps({'code': 200})
+    return json.dumps({'code': 202})
 
 # 内容详情
 @app.route('/detail', methods=['GET'])
@@ -135,7 +166,6 @@ def detail():
     # 查评论
     sql = "select c.pid, c.articleid, u.username, c.content " \
           "from comment as c left join user as u on c.authorid=u.id where articleid=%s"
-
     comments = db.findByCondition(sql, id)
     return render_template('content.html', id=id, content=values, comments=comments)
 

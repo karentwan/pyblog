@@ -20,6 +20,8 @@ def MD5(str):
     hl.update(str.encode(encoding='utf-8'))
     return hl.hexdigest()
 
+
+
 '''
 第一个参数是没加密的
 '''

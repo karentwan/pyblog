@@ -5,6 +5,24 @@ function modifyNav() {
     $(lists[2]).attr("class", "active");
 }
 
+/**
+ * 点赞函数
+ */
+function great(id) {
+    console.log("待点赞的id:" + id);
+    //ajax的简化版，不能返回错误信息
+    $.get("/great?id=" + id, function(data) {
+        console.log(data);
+        var obj = eval( '(' + data + ')');
+        if( obj.code == 200) {
+            // var great = $("#great");
+            // var num = parseInt(great.text());
+            // great.text(num + 1);
+        } else {
+            alert("点赞失败！");
+        }
+    });
+}
 
 (function() {
     window.onload = modifyNav;
