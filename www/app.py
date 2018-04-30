@@ -25,7 +25,8 @@ def getIndex():
         username=user['username']
         print('username:%s'%(username))
     print(values)
-    return render_template("index.html", username=username, articles=values)
+
+    return render_template("index.html", articles=values)
 
 '''
 获取文章列表
@@ -106,7 +107,9 @@ def register():
 def detail():
     id = request.args.get('id')
     # python字符串格式化输出
-    sql = 'select a.title, a.content from article as a where id={id}'.format(id=id)
+    # sql = 'select a.title, a.content from article as a where id={id}'.format(id=id)
+    sql = "select a.title, a.content, c.catename " \
+          "from article as a left join category as c on a.categoryid = c.id where a.id = {id}".format(id=id)
     print('sql:%s'%(sql))
     values = db.findone(sql)
     print(values)
