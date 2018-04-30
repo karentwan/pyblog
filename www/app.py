@@ -93,9 +93,9 @@ def register():
     password = request.form.get('password')
     if not username or not password:
         return send_file('static/fail.html')
-    ecode = util.MD5(password)
+    encode = util.MD5(password)
     sql = "insert into user values(null, %s, %s)"
-    count = db.insert(sql, username, password)
+    count = db.insert(sql, username, encode)
     if count > 0:
         return send_file('static/success.html')
     return send_file('static/fail.html')
