@@ -88,6 +88,25 @@ def logout():
     session.clear()
     return redirect('/index')
 
+@app.route('/comment', methods=["POST"])
+def comment():
+    user = session.get('user')
+    if not user:
+        return redirect("/loginview")
+    content = request.form.get("comment")
+    articleId = request.form.get("articleId")
+    pid = request.form.get('pid')
+    if not pid:
+        pid = 0
+    uid = user['userid']
+    print("uid, articleId, content", (uid, articleId, content, pid))
+    sql = "insert into comment values(null, %s, %s, %s, %s)"
+    count = db.insert(sql, content, pid, articleId, uid)
+    print("cout:%s"%(count))
+    if count > 0:
+        return send_file('static/success.html')
+    return send_file('static/fail.html')
+
 @app.route('/register', methods=['POST'])
 def register():
     username = request.form.get('username')
@@ -113,7 +132,12 @@ def detail():
     print('sql:%s'%(sql))
     values = db.findone(sql)
     print(values)
-    return render_template('content.html', content=values)
+    # 查评论
+    sql = "select c.pid, c.articleid, u.username, c.content " \
+          "from comment as c left join user as u on c.authorid=u.id where articleid=%s"
+
+    comments = db.findByCondition(sql, id)
+    return render_template('content.html', id=id, content=values, comments=comments)
 
 
 if __name__ == '__main__':
