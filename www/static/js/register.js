@@ -1,3 +1,4 @@
+// register = true;
 /**
  * 在输入用户对话框失去焦点时执行，验证用户是否已存在
  */
@@ -26,10 +27,12 @@ function asyValidUser(self) {
                 // field.focus();
                 $(".username-valid").hide()
                 $(".warning").show()
+                // register = false;
             } else {
                 console.log("当前用户可以注册！");
                 $(".warning").hide()
                 $(".username-valid").show()
+                register = true;
             }
         }, error:function(data) {//失败
             //打印出错信息
@@ -50,13 +53,14 @@ function validField(self) {
             $(".confirm-valid").hide();
             $(".nomatching-warning").show();
             $(".btn").attr({"disabled":"disabled"});
+            // register = false;
             return;
         }
+        // register = true;
         $(".btn").removeAttr("disabled")
         $(".nomatching-warning").hide();
         $(".confirm-valid").show();
     } else if( field.attr("id") == "password") {
-
         $(".password-valid").show();
     }
 }
@@ -66,7 +70,7 @@ function validate() {
     console.log('开始验证');
     var password = $("#password").val();
     var confirm = $("#confirm").val();
-    if( confirm != password ) {
+    if( confirm != password) {
         alert("两次密码不匹配！");
         return false;
     }

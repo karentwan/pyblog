@@ -11,6 +11,7 @@ form {
 }
 .form-group > h2 {
     text-align: center;
+    margin-right:10%;
 }
 
 a:hover {
