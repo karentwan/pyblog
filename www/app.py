@@ -5,6 +5,7 @@ from flask import send_file
 import functools
 import json
 import db,util
+import time
 '''
 网站的入口，所有的url都将转到这里面
 如果要使用模板，那么这个python文件和templates目录需要
@@ -74,7 +75,7 @@ def processValues(values, func):
 获取文章列表
 '''
 @app.route('/list', methods=['GET'])
-def list():
+def listArticle():
     sql = 'select a.id, a.title, a.time, u.username, c.catename, a.great, a.brief, a.subcategory ' \
           'from article as a left join user as u ' \
           'on a.autorid = u.id left join category as c on a.categoryid = c.id';
@@ -162,13 +163,15 @@ def comment():
     if not pid:
         pid = 0
     uid = user['userid']
-    print("uid, articleId, content", (uid, articleId, content, pid))
+    print("uid, articleId, content", (uid, int(articleId), content, int(pid)))
     # python的数据库操作全用%s占位，用其他的会报错
-    sql = "insert into comment values(null, %s, %s, %s, %s)"
-    count = db.insert(sql, content, pid, articleId, uid)
+    sql = "insert into comment values(null, %s, %s, %s, %s, %s)"
+    # 生成时间戳
+    t = time.time()
+    count = db.insert(sql, content, pid, articleId, uid, t)
     print("cout:%s"%(count))
     if count > 0:
-        return send_file('static/success.html')
+        return redirect('/detail?id=' + articleId)
     return send_file('static/fail.html')
 
 @app.route('/register', methods=['POST'])
@@ -181,7 +184,7 @@ def register():
     sql = "insert into user values(null, %s, %s)"
     count = db.insert(sql, username, encode)
     if count > 0:
-        return send_file('static/success.html')
+        return redirect('/index')
     return send_file('static/fail.html')
 
 # 点赞
@@ -212,11 +215,36 @@ def detail():
     values = db.findone(sql)
     print(values)
     # 查评论
-    sql = "select c.pid, c.articleid, u.username, c.content " \
-          "from comment as c left join user as u on c.authorid=u.id where articleid=%s"
+    sql = "select c.id, c.pid, u.username, c.content " \
+          "from comment as c left join user as u on c.authorid=u.id where articleid=%s order by c.time desc"
     comments = db.findByCondition(sql, id)
+    # print(comments)
+    ret = dataTreeForComment(comments)
+    print("ret:%s"%(ret))
     return render_template('content.html', id=id, content=values, comments=comments)
 
+'''
+为评论创建评论树
+'''
+def dataTreeForComment(comments):
+    # 待返回的结果
+    ret = []
+    temp = dict()
+    for comment in comments:
+        # 将元组转为数组，否则不可编辑
+        t = list(comment)
+        t.append({'children':[]})
+        # print(t)
+        temp[comment[0]] = t
+    for comment in comments:
+        # 返回父元素的所在的行
+        item = temp.get(comment[1])
+        if not item:
+            ret.append(temp.get(comment[0]))
+        else:
+            print(item[4])
+            item[4]['children'] = temp.get(comment[0])
+    return ret
 
 if __name__ == '__main__':
     app.run()

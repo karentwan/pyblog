@@ -34,6 +34,7 @@ def select( sql, conn = None):
 def findByCondition(sql, *args, conn = None):
     if not conn:
         conn = getConnector()
+    print("sql:%s"%(sql))
     cursor = getCursor(conn)
     cursor.execute(sql, args)
     values = cursor.fetchall()
