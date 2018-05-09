@@ -28,6 +28,19 @@ def verify(func):
         return func(*args, **kw)
     return wrapper
 
+'''
+api格式的验证，返回的是json数据，而不是
+跳转到登陆页面
+'''
+def apiVerify(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kw):
+        user = session.get('user')
+        if not user:
+            return json.dumps({'code': 201, 'content':'用户未登陆'})
+        return func(*args, **kw)
+    return wrapper
+
 
 # 首页
 @app.route('/index', methods=['GET'])
@@ -35,42 +48,16 @@ def getIndex():
     sql = 'select a.title, a.time, u.username, c.catename, a.id ' \
           'from article as a left join user as u on a.autorid = u.id left join ' \
           'category as c on a.categoryid = c.id;'
-    values = db.select(sql)
+    values = db.findByCondition(sql)
     user = session.get('user')
     username = None
     if user:
         username=user['username']
         print('username:%s'%(username))
     # print(values)
-    def func(temp, value):
-        for i, item in enumerate(value):
-            if i == 0:
-                temp['title'] = item
-            elif i == 1:
-                print("time:", item)
-                temp['time'] = util.timestamp2time(item)
-            elif i == 2:
-                temp['username'] = item
-            elif i == 3:
-                temp['catename'] = item
-            else:
-                temp['articleId'] = item
-    content = processValues(values, func)
-    return render_template("index.html", articles=content)
+    return render_template("index.html", articles=values)
 
 
-'''
-将从数据库里面查询出来的内容
-进行处理，处理的方法为func函数
-'''
-def processValues(values, func):
-    content = []
-    for value in values:
-        print(value)
-        temp = dict()
-        func(temp, value)
-        content.append(temp)
-    return content
 '''
 获取文章列表
 '''
@@ -79,31 +66,9 @@ def listArticle():
     sql = 'select a.id, a.title, a.time, u.username, c.catename, a.great, a.brief, a.subcategory ' \
           'from article as a left join user as u ' \
           'on a.autorid = u.id left join category as c on a.categoryid = c.id';
-    values = db.select(sql)
+    values = db.findByCondition(sql)
     # print(values)
-    def func(temp, value):
-        # 多下标方式
-        for i, item in enumerate(value):
-            if i == 0:
-                temp['articleId'] = item
-            elif i == 1:
-                print("time:", item)
-                temp['title'] = item
-            elif i == 2:
-                temp['time'] = util.timestamp2time(item)
-            elif i == 3:
-                temp['username'] = item
-            elif i == 4:
-                temp['catename'] = item
-            elif i == 5:
-                temp['great'] = item
-            elif i == 6:
-                temp['brief'] = item
-            else:
-                temp['subcate'] = item
-    content = processValues(values,func)
-    # print(content)
-    return render_template("list.html", list=content)
+    return render_template("list.html", list=values)
 
 # 登录注册界面
 @app.route('/loginview', methods=['GET'])
@@ -140,11 +105,11 @@ def login():
     if not value:
         # 不能使用/static/fail.html,要使用下面的形式
         return send_file('static/fail.html')
-    if util.cmp_password(password, value[2]):
+    if util.cmp_password(password, value['password']):
         # 存cookie
-        obj = {'userid':value[0], 'username':value[1]}
+        obj = {'userid':value['id'], 'username':value['username']}
         session['user'] = obj
-        print('username:%s'%(value[1]))
+        print('username:%s'%(value['username']))
         return redirect('/index')
     return send_file('static/fail.html')
 
@@ -189,7 +154,7 @@ def register():
 
 # 点赞
 @app.route('/great', methods=['GET'])
-@verify
+@apiVerify
 def great():
     user = session.get('user')
     uid = user['userid']
@@ -212,13 +177,13 @@ def detail():
     sql = "select a.title, a.content, c.catename " \
           "from article as a left join category as c on a.categoryid = c.id where a.id = {id}".format(id=id)
     print('sql:%s'%(sql))
-    values = db.findone(sql)
+    values = db.findOneByCondition(sql)
     print(values)
     # 查评论
     sql = "select c.id, c.pid, u.username, c.content " \
           "from comment as c left join user as u on c.authorid=u.id where articleid=%s order by c.time desc"
     comments = db.findByCondition(sql, id)
-    # print(comments)
+    print(comments)
     ret = dataTreeForComment(comments)
     print("ret:%s"%(ret))
     return render_template('content.html', id=id, content=values, comments=comments)
@@ -231,19 +196,17 @@ def dataTreeForComment(comments):
     ret = []
     temp = dict()
     for comment in comments:
-        # 将元组转为数组，否则不可编辑
-        t = list(comment)
-        t.append({'children':[]})
+        comment['children'] = []
         # print(t)
-        temp[comment[0]] = t
+        temp[comment['id']] = comment
     for comment in comments:
         # 返回父元素的所在的行
-        item = temp.get(comment[1])
+        item = temp.get(comment['pid'])
         if not item:
-            ret.append(temp.get(comment[0]))
+            ret.append(comment)
         else:
-            print(item[4])
-            item[4]['children'] = temp.get(comment[0])
+            print(item)
+            item['children'].append(comment)
     return ret
 
 if __name__ == '__main__':

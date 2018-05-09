@@ -33,7 +33,7 @@
                     <li class="list-item">
                         <!--点赞-->
                         <div class="great">
-                            <a href="javascript:void(0)" onclick="great(this, {{item['articleId']}})">
+                            <a href="javascript:void(0)" onclick="great(this, {{item['id']}})">
                                 <div>
                                     <i class="glyphicon glyphicon-chevron-up"> </i>
                                 </div>
@@ -47,12 +47,12 @@
                             <!--标题-->
                             <div>
                                 <span class="cus-title">
-                                    <a href="/detail?id={{item['articleId']}}">
+                                    <a href="/detail?id={{item['id']}}">
                                         {{item['title']}}
                                     </a>
                                 </span>
                                 <span class="bri-label">
-                                    {{item['subcate']}}
+                                    {{item['subcategory']}}
                                 </span>
                             </div>
                             <!--信息-->

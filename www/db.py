@@ -31,6 +31,9 @@ def select( sql, conn = None):
     conn.close()
     return values
 
+'''
+返回带列名的数据集
+'''
 def findByCondition(sql, *args, conn = None):
     if not conn:
         conn = getConnector()
@@ -38,19 +41,32 @@ def findByCondition(sql, *args, conn = None):
     cursor = getCursor(conn)
     cursor.execute(sql, args)
     values = cursor.fetchall()
+    result = []
+    # 获取列的描述
+    index = cursor.description
+    # print("index:%s" % (index))
+    for value in values:
+        row = {}
+        for i in range(len(index)):
+            row[index[i][0]] = value[i]
+        result.append(row)
     cursor.close()
     conn.close()
-    return values
+    return result
 
 def findOneByCondition(sql, *args, conn = None):
     if not conn:
         conn = getConnector()
     cursor = getCursor(conn)
     cursor.execute(sql, args)
-    values = cursor.fetchone()
+    index = cursor.description
+    value = cursor.fetchone()
+    result = {}
+    for i in range(len(index)):
+        result[index[i][0]] = value[i]
     cursor.close()
     conn.close()
-    return values
+    return result
 
 def findone(sql, conn = None):
     if not conn:
