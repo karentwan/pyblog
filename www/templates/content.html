@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/static/css/common.css">
 <script src="/static/js/jquery-3.1.1.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
-
+<script src="/static/js/content.js"></script>
 {% endblock %}
 
 <!--内容-->
@@ -50,11 +50,11 @@
                 <!--评论-->
                 <div class="comment">
                     <!--提交评论的表单-->
-                    <form class="comment-form" action="/comment" method="post">
+                    <form class="comment-form" action="/comment" method="post" onsubmit="return processParams()">
                         <!--默认pid为0-->
-                        <input type="hidden" name="pid" value="0">
+                        <input type="hidden" name="pid" id="pid" value="0">
                         <input type="hidden" name="articleId" value="{{id}}">
-                        <textarea class="input" type="text" name="comment" placeholder="来说两句吧"></textarea>
+                        <textarea class="input" id="input" type="text" name="comment" placeholder="剑客，留下你的建议？"></textarea>
                         <button class="comment-btn btn btn-default" type="submit">点击提交评论</button>
                         <div class="blank"></div>
                     </form>
@@ -64,26 +64,8 @@
                             <span style="border:1px solid #e7e7e7; background-color:#fff;border-bottom-color:transparent;padding:5px 20px;border-radius:5px;font-size:18px;">评论</span>
                         </div>
                         <div style="border-left:4px solid #e7e7e7;font-size:18px;margin:20px 0;padding-left:10px;">最新评论</div>
-                            <ul class="uc-comment-list">
-                                <!--评论列表-->
-                                {% for comment in comments%}
-                                <li class="uc-comment-item">
-                                    <div class="uc-user-infor">
-                                        <span class="uc-username">{{comment[2]}}</span>
-                                        <span class="uc-address">
-                                            [国内网友]
-                                        </span>
-                                    </div>
+                            <ul class="uc-comment-list" id="comments">
 
-                                    <div>
-                                        {{comment[3]}}
-                                    </div>
-                                    <div class="uc-control">
-                                        <a href="#">回复</a>
-                                    </div>
-                                    <div class="clear"></div>
-                                </li>
-                                {% endfor %}
                             </ul>
                         </div>
                     </div>

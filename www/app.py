@@ -168,6 +168,19 @@ def great():
         return json.dumps({'code': 200})
     return json.dumps({'code': 202})
 
+@app.route('/getUserComment', methods=['POST'])
+def getUserComment():
+    # 获取文章id
+    articleId = request.form.get('articleId')
+    # 查评论
+    sql = "select c.id, c.pid, u.username, c.content " \
+          "from comment as c left join user as u on c.authorid=u.id where articleid=%s order by c.time desc"
+    comments = db.findByCondition(sql, articleId)
+    print(comments)
+    ret = dataTreeForComment(comments)
+    print("ret:%s" % (ret))
+    return json.dumps(ret)
+
 # 内容详情
 @app.route('/detail', methods=['GET'])
 def detail():
@@ -179,14 +192,8 @@ def detail():
     print('sql:%s'%(sql))
     values = db.findOneByCondition(sql)
     print(values)
-    # 查评论
-    sql = "select c.id, c.pid, u.username, c.content " \
-          "from comment as c left join user as u on c.authorid=u.id where articleid=%s order by c.time desc"
-    comments = db.findByCondition(sql, id)
-    print(comments)
-    ret = dataTreeForComment(comments)
-    print("ret:%s"%(ret))
-    return render_template('content.html', id=id, content=values, comments=comments)
+
+    return render_template('content.html', id=id, content=values)
 
 '''
 为评论创建评论树
