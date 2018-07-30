@@ -7,6 +7,10 @@ function json2obj(str) {
     return eval('(' + str + ')');
 }
 
+function timestamp2time(n1) {
+    return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+}
+
 /**
  * 获取地址栏的参数
  * @param name

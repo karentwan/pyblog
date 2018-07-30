@@ -33,6 +33,24 @@ def timestamp2time(timestamp):
     dt = time.strftime("%Y-%m-%d", time_local)
     # dt = '2018-04-30'
     return dt
+
+'''
+将所有的列表里面的时间戳都转换为时间
+@:param list 一个列表，每一个元素都是一个dict
+'''
+def timestamp2DateForAll(list):
+    result = []
+    # 将时间戳转换为时间
+    for value in list:
+        temp = dict()
+        for k, v in value.items():
+            if k == 'time':
+                temp[k] = timestamp2time(v)
+            else:
+                temp[k] = v
+        result.append(temp)
+    return result
+
 '''
 第一个参数是没加密的
 '''

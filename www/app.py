@@ -50,12 +50,13 @@ def getIndex():
           'category as c on a.categoryid = c.id;'
     values = db.findByCondition(sql)
     user = session.get('user')
+    result = util.timestamp2DateForAll(values)
     username = None
     if user:
         username=user['username']
         print('username:%s'%(username))
     # print(values)
-    return render_template("index.html", articles=values)
+    return render_template("index.html", articles=result)
 
 
 '''
@@ -136,7 +137,7 @@ def comment():
     count = db.insert(sql, content, pid, articleId, uid, t)
     print("cout:%s"%(count))
     if count > 0:
-        return redirect('/detail?id=' + articleId)
+        return redirect('/detail/' + articleId)
     return send_file('static/fail.html')
 
 @app.route('/register', methods=['POST'])
@@ -173,26 +174,30 @@ def getUserComment():
     # 获取文章id
     articleId = request.form.get('articleId')
     # 查评论
-    sql = "select c.id, c.pid, u.username, c.content " \
+    sql = "select c.id, c.pid, u.username, c.content, c.time " \
           "from comment as c left join user as u on c.authorid=u.id where articleid=%s order by c.time desc"
     comments = db.findByCondition(sql, articleId)
+    #the code's function is to make timestamp of all comment to be time
+    result = util.timestamp2DateForAll(comments)
     print(comments)
-    ret = dataTreeForComment(comments)
+    ret = dataTreeForComment(result)
     print("ret:%s" % (ret))
     return json.dumps(ret)
-
-# 内容详情
-@app.route('/detail', methods=['GET'])
-def detail():
-    id = request.args.get('id')
+'''
+内容详情
+动态路由方式
+'''
+@app.route('/detail/<id>')
+def detail(id):
+    #/detail?id=1
+    # id = request.args.get('id')
     # python字符串格式化输出
     # sql = 'select a.title, a.content from article as a where id={id}'.format(id=id)
     sql = "select a.title, a.content, c.catename " \
-          "from article as a left join category as c on a.categoryid = c.id where a.id = {id}".format(id=id)
+          "from article as a left join category as c on a.categoryid = c.id where a.id = %s"
     print('sql:%s'%(sql))
-    values = db.findOneByCondition(sql)
+    values = db.findOneByCondition(sql, id)
     print(values)
-
     return render_template('content.html', id=id, content=values)
 
 '''
