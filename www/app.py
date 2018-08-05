@@ -193,12 +193,23 @@ def detail(id):
     # id = request.args.get('id')
     # python字符串格式化输出
     # sql = 'select a.title, a.content from article as a where id={id}'.format(id=id)
+    '''
     sql = "select a.title, a.content, c.catename " \
           "from article as a left join category as c on a.categoryid = c.id where a.id = %s"
+    '''
+    sql = 'SELECT a.title, a.content, c.catename, u.username, a.time ' \
+          'FROM article AS a LEFT JOIN category AS c ON a.categoryid = ' \
+          'c.id LEFT JOIN USER AS u ON a.autorid = u.id WHERE a.id = %s'
     print('sql:%s'%(sql))
     values = db.findOneByCondition(sql, id)
     print(values)
-    return render_template('content.html', id=id, content=values)
+    result = dict()
+    for k, v in values.items():
+        if k == 'time':
+            result[k] = util.timestamp2time(v)
+        else:
+            result[k] = v
+    return render_template('content.html', id=id, content=result)
 
 '''
 为评论创建评论树

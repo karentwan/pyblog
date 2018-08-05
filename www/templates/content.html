@@ -10,8 +10,8 @@
 <script src="/static/js/jquery-3.1.1.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/content.js"></script>
-<link rel="stylesheet" href="css/codestyles/prettify.css">
-<script src="js/prettify.js"></script>
+<link rel="stylesheet" href="/static/css/codestyles/prettify.css">
+<script src="/static/js/prettify.js"></script>
 {% endblock %}
 
 <!--内容-->
@@ -39,13 +39,16 @@
             <!--文章内容-->
             <div class="content">
                 <!--文章标题-->
-                <h4 class="cus-title">{{content['title']}}</h4>
+                <h3 class="cus-title">{{content['title']}}</h3>
                 <!--文章作者-->
-                <!--<div class="cus-infor">-->
-                    <!--<span>xiaodao</span>-->
-                    <!--<span>2018-09-19</span>-->
-                    <!--<span>技术</span>-->
-                <!--</div>-->
+                <div class="cus-infor">
+                    <span>作者：</span>
+                    <span class="value">{{content['username']}}</span>
+                    <span>时间：</span>
+                    <span class="value">{{content['time']}}</span>
+                    <span>分类：</span>
+                    <span class="value">{{content['catename']}}</span>
+                </div>
                 <div class="cus-detail">
                     {{content['content']}}
                 </div>

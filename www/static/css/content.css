@@ -1,10 +1,24 @@
 
 .mid {
     min-height: 600px;
-    padding-left:10%;
-    padding-right:10%;
-    /*background-color: #f8f8f8;*/
+    /*padding-left:10%;*/
+    /*padding-right:10%;*/
+    margin-left: 10%;
+    margin-right:10%;
+    background-color: #ffffff;
 }
+
+.cus-infor {
+    border:1px dashed #ccc;
+    margin-top:15px;
+    padding:5px;
+}
+
+.cus-nav .breadcrumb {
+    background: #ffffff;
+    border-bottom: 1px solid #ccc;
+}
+
 .mid .left {
     width:70%;
     /*float:left;*/
@@ -32,7 +46,7 @@
 .mid .content .cus-infor {
     text-align: center;
 }
-.mid .content .cus-infor span {
+.mid .content .cus-infor span.value {
     margin-right:20px;
 }
 .mid .content .cus-detail {
