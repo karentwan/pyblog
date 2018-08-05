@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>代码高亮测试</title>
+     <script src="js/jquery-3.1.1.min.js"></script>
+     <!--<link rel="stylesheet" href="css/prettify.css">-->
+     <link rel="stylesheet" href="css/codestyles/prettify.css">
+    <script src="js/prettify.js"></script>
+</head>
+<body>
+
+    <div style="width:50%;margin:auto;">
+         <pre>
+                <code>
+function test() {
+    console.log("我是Js函数测试!");
+}
+ public class Hello {
+    public static void main(String[] args) {
+        system.out.println("hello, world!");
+    }
+}
+                </code>
+            </pre>
+    </div>
+
+
+
+<script>
+    $(document).ready(function() {
+         $("pre").addClass("prettyprint linenums")
+        prettyPrint();
+    });
+</script>
+</body>
+</html>

@@ -5,14 +5,14 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/content.css">
     <link rel="stylesheet" href="css/common.css">
-    <!--<link rel="stylesheet"-->
-      <!--href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">-->
-    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>-->
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/codestyles/prettify.css">
+    <script src="js/prettify.js"></script>
+
     <title>内容详情</title>
 </head>
-<body>
+<body >
     <!--头-->
     <div class="header">
         <nav class="navbar navbar-default" role="navigation">
@@ -75,19 +75,29 @@
                 </div>
                 <div class="cus-detail">
 <!--test-->
-                <pre>
+            <pre>
                   <code>
-                        VPS technology: OpenVZ/KiwiVM               先进的管理后台
-                        Linux OS: Centos, Debian, Ubuntu, Fedora    这么多的系统选择
-                        Instant OS reload                           瞬间系统切换
-                        1 Dedicated IPv4 address                    独占一个IP
-                        Full root access                            完整的root权限
-                        PPP and VPN support (tun/tap)               支持PPP和VPN！
-                        Instant RDNS update from control panel      管理后台瞬间实现可逆DNS
-                        No contract, anytime cancellation           无需客服，不满意直接退款！
-                        99% uptime guarantee                        保证99%的无故障时间
-                        30-day money back guarantee                 30天内可以随意退款
+VPS technology: OpenVZ/KiwiVM               先进的管理后台
+Linux OS: Centos, Debian, Ubuntu, Fedora    这么多的系统选择
+Instant OS reload                           瞬间系统切换
+1 Dedicated IPv4 address                    独占一个IP
+Full root access                            完整的root权限
+PPP and VPN support (tun/tap)               支持PPP和VPN！
+Instant RDNS update from control panel      管理后台瞬间实现可逆DNS
+No contract, anytime cancellation           无需客服，不满意直接退款！
+99% uptime guarantee                        保证99%的无故障时间
+30-day money back guarantee                 30天内可以随意退款
                   </code>
+            </pre>
+                    java代码
+                <pre>
+                    <code >
+public class Hello {
+    public static void main(String[] args) {
+        system.out.println("hello, world!");
+    }
+}
+                    </code>
                 </pre>
 <!--end-->
                 </div>
@@ -226,4 +236,11 @@
         <p>All Copyright Reserved by xiaodao</p>
     </div>
 </body>
+<script>
+
+    $(document).ready(function() {
+         $("pre").addClass("prettyprint linenums")
+        prettyPrint();
+    });
+</script>
 </html>
