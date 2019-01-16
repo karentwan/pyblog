@@ -1,21 +1,24 @@
 
 .mid {
     min-height: 600px;
-    padding-left:10%;
-    padding-right:10%;
-    /*background-color: #f8f8f8;*/
-}
-.header .navbar {
-    padding-left:10%;
-    padding-right:10%;
+    /*padding-left:10%;*/
+    /*padding-right:10%;*/
+    margin-left: 10%;
+    margin-right:10%;
+    background-color: #ffffff;
 }
 
-.header-search {
-    /*display: inline-block;*/
+.cus-infor {
+    border:1px dashed #ccc;
+    margin-top:15px;
+    padding:5px;
 }
-.header .navbar-form {
-    margin:0;
+
+.cus-nav .breadcrumb {
+    background: #ffffff;
+    border-bottom: 1px solid #ccc;
 }
+
 .mid .left {
     width:70%;
     /*float:left;*/
@@ -43,7 +46,7 @@
 .mid .content .cus-infor {
     text-align: center;
 }
-.mid .content .cus-infor span {
+.mid .content .cus-infor span.value {
     margin-right:20px;
 }
 .mid .content .cus-detail {
@@ -52,14 +55,167 @@
     margin-bottom:30px;
 }
 
-.footer {
-    height:60px;
-    border-top:1px solid #e7e7e7;
-    background-color: #f8f8f8;
+.comment {
     position:relative;
+    margin-top:100px;
 }
-.footer p {
+.input, .input:focus {
+    outline:none;
+    display: block;
+    width:100%;
+    height:150px;
+    /*border:1px solid #e7e7e7;*/
+    /*border-radius:10px;*/
+    border:none;
+    margin:auto;
+    padding:30px 15px 30px;
+    resize:none;
+    margin-top:20px;
+    font-family: "微软雅黑";
+    font-size:18px;
+}
+
+.comment-form {
+    border:1px solid #e7e7e7;
+    border-radius:10px;
+}
+
+.comment-form:before {
+    display: block;
+    content:"";
+    border:1px solid #e7e7e7;
+    width:60px;
+    height:60px;
+    border-radius: 30px;
+    text-align: center;
+    background-color: #fff;
     position:absolute;
-    top:30%;
-    left:40%;
+    left:5%;
+    top:-40px;
+}
+
+.comment-form:after {
+    display: block;
+    content:"小刀";
+    border:1px solid #e7e7e7;
+    width:50px;
+    height:50px;
+    color:#777;
+    border-radius: 25px;
+    text-align: center;
+    padding-top:13px;
+    background-color: #fff;
+    position:absolute;
+    left:5.7%;
+    top:-35px;
+}
+
+.blank {
+    position:absolute;
+    width:100px;
+    height:50px;
+    left:4%;
+    background-color: #fff;
+    top:-50px;
+}
+.comment-btn {
+    margin-top:30px;
+    border: 1px solid #e7e7e7;
+    border-radius: 10px;
+    position:absolute;
+    padding: 10px 30px;
+    right:0%;
+}
+
+.user-comment {
+    width: 100%;
+    /*height:300px;*/
+    /*background-color: red;*/
+    margin-top:100px;
+}
+.uc-comment-list {
+    margin:0;
+    padding-left: 0;
+}
+.uc-comment-item {
+    font-family: "微软雅黑";
+    /*border-bottom: 1px solid #e7e7e7;*/
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+.uc-user-infor {
+    padding-bottom:10px;
+}
+.uc-username {
+    color:blue;
+    font-size: 15px;
+}
+
+.subcomment li {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    border:none;
+}
+
+.uc-address {
+    margin-left:10px;
+    color:#777;
+}
+.uc-control {
+    float:right;
+}
+
+
+/*用户评论里面的样式表*/
+.userhead {
+    position: absolute;
+    display: inline-block;
+    width:54px;
+    height:54px;
+    -webkit-transition:all .3s ease-in-out;
+}
+
+.c-main::before {
+    content:"";
+    position:absolute;
+    display: inline-block;
+    left:-9px;
+    border-top:9px solid transparent;
+    border-right: 9px solid #eee;
+    border-bottom: 9px solid transparent;
+}
+
+.c-main {
+    display: inline-block;
+    position: relative;
+    border:1px #eee solid;
+    padding:10px 15px;
+    margin-left: 72px;
+    border-radius: 3px;
+    background: #fbfdfb;
+    min-height: 60px;
+    width:90%;
+    line-height: 2rem;
+    /*font-size: .9375rem;*/
+}
+
+.c-info {
+    padding-top:5px;
+    color: #bbb;
+    /*font-size: .875rem;*/
+}
+.c-info span,
+.c-info a{
+    margin-right:10px;
+}
+
+.c-subcomment {
+    position:relative;
+    width:97%;
+    left:3%;
+}
+
+.c-subcomment li{
+    /*margin-left:20px;*/
+    margin-top:15px;
 }

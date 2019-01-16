@@ -28,49 +28,49 @@
     position: relative;
     margin-bottom: -1px;
 }
-.mid .left .list-item {
+.mid .left .cus-list .list-item {
     border-bottom:1px solid #c7ddef;
     margin-top:10px;
 
 }
-.mid .left  .list-item .great {
+.mid .left .cus-list .list-item .great {
     float:left;
     border: 1px solid #c7ddef;
     padding:3px 10px;
     border-radius: 5px;
     text-align: center;
 }
-.mid .left  .list-item .brief {
+.mid .left .cus-list .list-item .brief {
     margin-left:20px;
     float:left;
     width:80%;
 
 }
-.mid .left .list-item .brief .cus-infor span {
+.mid .left .cus-list .list-item .brief .cus-infor span {
     color:#999;
 }
-.mid .left  .list-item .brief .cus-infor .author ,
-.mid .left  .list-item .brief .cus-infor .category{
+.mid .left .cus-list .list-item .brief .cus-infor .author ,
+.mid .left .cus-list .list-item .brief .cus-infor .category{
     color:#009a61;
 }
 
-.mid .left  .list-item .brief .bri-label {
+.mid .left .cus-list .list-item .brief .bri-label {
     color:#F2AE43;
     background-color: rgba(242,174,67,0.25);
     border-radius: 8px;
     margin-left:5px;
     padding:1px 7px;
 }
-.mid .left  .list-item .brief .cus-title {
+.mid .left .cus-list .list-item .brief .cus-title {
     font-size:18px;
 
 }
 .mid .left .cus-list .list-item .brief .cus-infor {
     font-size:12px;
 }
-.mid .left  .list-item .brief > div {
+.mid .left .cus-list .list-item .brief > div {
     margin-bottom:5px;
 }
 
-.mid .left  .list-item .cus-brief {
+.mid .left .cus-list .list-item .cus-brief {
 }

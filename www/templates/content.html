@@ -1,0 +1,93 @@
+{% extends "base.html"%}
+{% block title%}内容详情{% endblock %}
+<!--填充标题-->
+{% block head%}
+<!--不加这个title显示不出来-->
+{{super()}}
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/content.css">
+<link rel="stylesheet" href="/static/css/common.css">
+<script src="/static/js/jquery-3.1.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/content.js"></script>
+<link rel="stylesheet" href="/static/css/codestyles/prettify.css">
+<script src="/static/js/prettify.js"></script>
+{% endblock %}
+
+<!--内容-->
+{%block content%}
+  <!--中间部分-->
+<div class="mid">
+        <!--面包屑导航-->
+        <div class="cus-nav">
+            <ol class="breadcrumb">
+                <li>
+                    <i class="glyphicon glyphicon-home"></i>
+                    <a href="/index">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    {{content['catename']}}
+                </li>
+                <li class="active">
+                   正文
+                </li>
+            </ol>
+        </div>
+        <div class="left">
+            <!--文章内容-->
+            <div class="content">
+                <!--文章标题-->
+                <h3 class="cus-title">{{content['title']}}</h3>
+                <!--文章作者-->
+                <div class="cus-infor">
+                    <span>作者：</span>
+                    <span class="value">{{content['username']}}</span>
+                    <span>时间：</span>
+                    <span class="value">{{content['time']}}</span>
+                    <span>分类：</span>
+                    <span class="value">{{content['catename']}}</span>
+                </div>
+                <div class="cus-detail">
+                    {{content['content']}}
+                </div>
+                <!--评论-->
+                <div class="comment">
+                    <!--提交评论的表单-->
+                    <form class="comment-form" action="/comment" method="post" onsubmit="return processParams()">
+                        <!--默认pid为0-->
+                        <input type="hidden" name="pid" id="pid" value="0">
+                        <input type="hidden" name="articleId" value="{{id}}">
+                        <textarea class="input" id="input" type="text" name="comment" placeholder="剑客，留下你的建议？"></textarea>
+                        <button class="comment-btn btn btn-default" type="submit">点击提交评论</button>
+                        <div class="blank"></div>
+                    </form>
+                    <!--显示用户评论-->
+                    <div class="user-comment">
+                        <div class="uc-comment-label" style="border-bottom:1px solid #e7e7e7;">
+                            <span style="border:1px solid #e7e7e7; background-color:#fff;border-bottom-color:transparent;padding:5px 20px;border-radius:5px;font-size:18px;">评论</span>
+                        </div>
+                        <div style="border-left:4px solid #e7e7e7;font-size:18px;margin:20px 0;padding-left:10px;">最新评论</div>
+                            <!--这里面是自己的评论-->
+                            <ul class="uc-comment-list" id="comments">
+
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="right">
+            <!--新建一个分支-->
+        </div>
+        <div class="clear"></div>
+    </div>
+<script>
+
+    $(document).ready(function() {
+         $("pre").addClass("prettyprint linenums")
+        prettyPrint();
+    });
+</script>
+{% endblock %}
+

@@ -1,0 +1,85 @@
+{% extends "base.html"%}
+{% block title%}技术{% endblock %}
+<!--填充标题-->
+{% block head%}
+<!--不加这个title显示不出来-->
+{{super()}}
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/list.css">
+<link rel="stylesheet" href="/static/css/common.css">
+<script src="/static/js/jquery-3.1.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/list.js"></script>
+
+{% endblock %}
+
+<!--内容-->
+{%block content%}
+  <!--中间部分-->
+ <div class="mid">
+        <!--左边-->
+        <div class="left">
+            <!--头部的标签-->
+            <ul class="cus-label">
+                <li  class="active">
+                    文章列表
+                </li>
+                <div class="clear"></div>
+            </ul>
+
+            <div class="cus-list">
+                <ul>
+                    {% for item in list%}
+                    <li class="list-item">
+                        <!--点赞-->
+                        <div class="great">
+                            <a href="javascript:void(0)" onclick="great(this, {{item['id']}})">
+                                <div>
+                                    <i class="glyphicon glyphicon-chevron-up"> </i>
+                                </div>
+                                <div>
+                                <span class="num">{{item['great']}}</span>
+                            </div>
+                            </a>
+                        </div>
+                        <!--文章简介-->
+                        <div class="brief">
+                            <!--标题-->
+                            <div>
+                                <span class="cus-title">
+                                    <a href="/detail?id={{item['id']}}">
+                                        {{item['title']}}
+                                    </a>
+                                </span>
+                                <span class="bri-label">
+                                    {{item['subcategory']}}
+                                </span>
+                            </div>
+                            <!--信息-->
+                            <div class="cus-infor">
+                                <span class="author">{{item['username']}}</span>
+                                <span>{{item['time']}}</span>
+                                <span>发布于</span>
+                                <span class="category">{{item['catename']}}</span>
+                            </div>
+                            <!--简介-->
+                            <div class="cus-brief">
+                                {{item['brief']}}
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                    {%endfor%}
+
+                </ul>
+            </div>
+
+        </div>
+        <!--右边-->
+        <div class="right">
+
+        </div>
+        <div class="clear"></div>
+    </div>
+{% endblock %}
+

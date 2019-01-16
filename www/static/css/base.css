@@ -1,0 +1,30 @@
+.header .navbar {
+    padding-left:10%;
+    padding-right:10%;
+}
+
+.loginnav {
+    float:right;
+    position:relative;
+    top:8px;
+}
+
+.header-search {
+    /*display: inline-block;*/
+}
+.header .navbar-form {
+    margin:0;
+}
+
+.footer {
+    height:60px;
+    border-top:1px solid #e7e7e7;
+    background-color: #f8f8f8;
+    position:relative;
+}
+.footer p {
+    position:absolute;
+    top:30%;
+    left:40%;
+}
+

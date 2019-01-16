@@ -3,27 +3,18 @@
     /*!*这行代码可以使div水平居中*!*/
     /*margin: 0 auto;*/
 /*}*/
-.header .navbar {
-    padding-left:10%;
-    padding-right:10%;
-}
-
-.header-search {
-    /*display: inline-block;*/
-}
-.header .navbar-form {
-    margin:0;
-}
-
 .mid {
-    padding-left:10%;
-    padding-right:10%;
+    /*padding-left:10%;*/
+    /*padding-right:10%;*/
+    margin-left: 10%;
+    margin-right: 10%;
     min-height: 600px;
+    background: #ffffff;
 }
 
 .mid .left {
     float:left;
-    width:72%;
+    width:70%;
     /*background-color: #6dffa1;*/
 }
 .mid .left .newslabel {
@@ -101,18 +92,6 @@
 
 .mid .right .about li {
     padding-bottom:5px;
-}
-
-.footer {
-    height:60px;
-    border-top:1px solid #e7e7e7;
-    background-color: #f8f8f8;
-    position:relative;
-}
-.footer p {
-    position:absolute;
-    top:30%;
-    left:40%;
 }
 
 

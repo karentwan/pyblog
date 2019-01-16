@@ -11,6 +11,11 @@ li {
     list-style: none;
 }
 
+body {
+    color:#555;
+    /*background: url(../res/body_repeat.jpg) repeat;*/
+}
+
 a,
 a:hover,
 a:focus{

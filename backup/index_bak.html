@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <title>首页</title>
+</head>
+<body>
+    <div class="header">
+        <nav class="navbar navbar-default" role="navigation">
+            <!--导航条的头-->
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">小刀的个人博客</a>
+                </div>
+                <!--导航栏的菜单-->
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/index">首页</a></li>
+                        <li><a href="#">生活</a></li>
+                        <li><a href="/list">技术</a></li>
+                    </ul>
+                </div>
+                <!--搜索框-->
+                <div class="header-search">
+                    {% if username %}
+                     <!--登录、注册-->
+                        <div class="loginnav">
+                            <img src="/static/res/head.png" alt="">
+                        </div>
+                    {% else %}
+                        <div class="loginnav btn-group">
+                            <a href="/loginview" class="btn btn-default" target="_blank">登录</a>
+                            <a href="/registerview" class="btn btn-default" target="_blank">注册</a>
+                        </div>
+                    {% endif %}
+                    <form class="navbar-form navbar-right" role="search" action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="button" class="btn btn-default navbar-btn">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+        </nav>
+    </div>
+    <!--中间部分-->
+    <div class="mid">
+        <!--左边-->
+        <div class="left">
+            <h3 class="newslabel">文章列表</h3>
+            <!--博文刘表-->
+            <ul class="news-list">
+                {% for article in articles%}
+                <li class="list-item">
+                    <h4><a href="/detail?id={{article[4]}}">{{article[0]}}</a></h4>
+                    <!--信息-->
+                    <div class="infor">
+                        <span >作者：</span>
+                        <span>{{article[2]}}</span>
+                        <span class="label">分类：</span>
+                        <span>{{article[3]}}</span>
+                        <span class="label">时间：</span>
+                        <span>{{article[1]}}</span>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!--右边-->
+        <div class="right">
+            <!--友情链接-->
+            <div class="special">
+                <h4 class="spe-label">友情链接</h4>
+                <ul class="list">
+                    <li class="list-item">
+                        <a href="http://www.github.com" target="_blank">
+                            <i class="glyphicon glyphicon-hand-right col-sm-1"></i>
+                            <div class="spe-des col-sm-6">Github</div>
+                            <i class="glyphicon glyphicon-chevron-right col-sm-offset-2 col-sm-1"></i>
+                            <div class="clear"></div>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a href="https://www.csdn.net/" target="_blank">
+                            <i class="glyphicon glyphicon-hand-right col-sm-1"></i>
+                            <div class="spe-des col-sm-6">CSDN</div>
+                            <i class="glyphicon glyphicon-chevron-right col-sm-offset-2  col-sm-1"></i>
+                            <div class="clear"></div>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a href="http://www.wanandroid.com/" target="_blank">
+                            <i class="glyphicon glyphicon-hand-right col-sm-1"></i>
+                            <div class="spe-des col-sm-6">玩安卓网</div>
+                            <i class="glyphicon glyphicon-chevron-right col-sm-offset-2  col-sm-1"></i>
+                            <div class="clear"></div>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a href="https://juejin.im/" target="_blank">
+                            <i class="glyphicon glyphicon-hand-right col-sm-1"></i>
+                            <div class="spe-des col-sm-6">掘金</div>
+                            <i class="glyphicon glyphicon-chevron-right col-sm-offset-2 col-sm-1"></i>
+                            <div class="clear"></div>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <!--关于我-->
+            <div class="about">
+                <h4 class="ab-label">关于我</h4>
+                <ul >
+                    <li>
+                        <span>职业：</span>
+                        <span>攻城狮</span>
+                    </li>
+                    <li>
+                        <span>联系方式：</span>
+                        <span>xhxiaodao@163.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!--底部-->
+    <div class="footer">
+            <p>All Copyright Reserved by xiaodao</p>
+        </div>
+</body>
+</html>

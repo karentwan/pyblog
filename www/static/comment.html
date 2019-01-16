@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/content.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/codestyles/prettify.css">
+    <script src="js/prettify.js"></script>
+
+    <title>内容详情</title>
+</head>
+<body >
+    <!--头-->
+    <div class="header">
+        <nav class="navbar navbar-default" role="navigation">
+            <!--导航条的头-->
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">小刀的个人博客</a>
+                </div>
+                <!--导航栏的菜单-->
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">首页</a></li>
+                        <li><a href="#">生活</a></li>
+                        <li><a href="#">技术</a></li>
+                    </ul>
+                </div>
+                <!--搜索框-->
+                <div class="header-search">
+                    <form class="navbar-form navbar-right" role="search" action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="button" class="btn btn-default navbar-btn">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--中间部分-->
+    <div class="mid">
+        <!--面包屑导航-->
+        <div class="cus-nav">
+            <ol class="breadcrumb">
+                <li>
+                    <i class="glyphicon glyphicon-home"></i>
+                    <a href="#">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#">技术</a>
+                </li>
+                <li class="active">
+                   正文
+                </li>
+            </ol>
+        </div>
+        <div class="left">
+            <!--文章内容-->
+            <div class="content">
+                <!--文章标题-->
+                <h3 class="cus-title">弄懂Gradle依赖 Android依赖导入全攻略</h3>
+                <!--文章作者-->
+                <div class="cus-infor">
+                    <span>xiaodao</span>
+                    <span>2018-09-19</span>
+                    <span>技术</span>
+                </div>
+                <div class="cus-detail">
+<!--test-->
+            <!--这里的内容不要有缩进-->
+
+            <pre>
+                <code>
+VPS technology: OpenVZ/KiwiVM               先进的管理后台
+Linux OS: Centos, Debian, Ubuntu, Fedora    这么多的系统选择
+Instant OS reload                           瞬间系统切换
+1 Dedicated IPv4 address                    独占一个IP
+Full root access                            完整的root权限
+PPP and VPN support (tun/tap)               支持PPP和VPN！
+Instant RDNS update from control panel      管理后台瞬间实现可逆DNS
+No contract, anytime cancellation           无需客服，不满意直接退款！
+99% uptime guarantee                        保证99%的无故障时间
+30-day money back guarantee                 30天内可以随意退款
+                  </code>
+            </pre>
+                    java代码
+                <pre>
+                    <code >
+public class Hello {
+    public static void main(String[] args) {
+        system.out.println("hello, world!");
+    }
+}
+                    </code>
+                </pre>
+<!--end-->
+                </div>
+                <!--评论-->
+                <div class="comment">
+                    <!--提交评论的表单-->
+                    <form class="comment-form" action="">
+                        <input type="hidden" name="articleId" value="{{id}}">
+                        <textarea class="input"  type="text" placeholder="来说两句吧"></textarea>
+                        <button class="comment-btn btn btn-default" type="submit">点击提交评论</button>
+                        <div class="blank"></div>
+                    </form>
+                    <div class="user-comment">
+                        <div class="uc-comment-label" style="border-bottom:1px solid #e7e7e7;">
+                            <span style="border:1px solid #e7e7e7; background-color:#fff;border-bottom-color:transparent;padding:5px 20px;border-radius:5px;font-size:18px;">评论</span>
+                        </div>
+                        <div style="border-left:4px solid #e7e7e7;font-size:18px;margin:20px 0;padding-left:10px;">最新评论</div>
+                            <ul class="uc-comment-list">
+                                <!--评论列表-->
+                                <li class="uc-comment-item">
+                                    <img class="userhead" src="res/userhead.png" alt="用户头像">
+                                    <!--评论内容-->
+                                    <div class="c-main">
+                                        <div>
+                                            这只是测试评论，并不具有意义
+                                        </div>
+                                        <div class="c-info">
+                                            <span>小翠翠</span>
+                                            <span>2018-07-26</span>
+                                            <a href="#" style="color:#00a67c;">回复</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--带子评论的列表-->
+                                <li class="uc-comment-item">
+                                    <img class="userhead" src="res/userhead.png" alt="用户头像">
+                                    <!--评论内容-->
+                                    <div class="c-main">
+                                        <div>
+                                            这只是测试评论，并不具有意义
+                                        </div>
+                                        <div class="c-info">
+                                            <span>小翠翠</span>
+                                            <span>2018-07-26</span>
+                                            <a href="#" style="color:#00a67c;">回复</a>
+                                        </div>
+                                    </div>
+                                    <ul class="c-subcomment">
+                                        <li>
+                                            <img class="userhead" src="res/userhead.png" alt="用户头像">
+                                           <!--评论内容-->
+                                            <div class="c-main">
+                                                <div>
+                                                    这只是测试评论，并不具有意义
+                                                </div>
+                                                <div class="c-info">
+                                                    <span>小翠翠</span>
+                                                    <span>2018-07-26</span>
+                                                    <a href="#" style="color:#00a67c;">回复</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img class="userhead" src="res/userhead.png" alt="用户头像">
+                                           <!--评论内容-->
+                                            <div class="c-main">
+                                                <div>
+                                                    这只是测试评论，并不具有意义
+                                                </div>
+                                                <div class="c-info">
+                                                    <span>小翠翠</span>
+                                                    <span>2018-07-26</span>
+                                                    <a href="#" style="color:#00a67c;">回复</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="uc-comment-item">
+                                    <img class="userhead" src="res/userhead.png" alt="用户头像">
+                                    <!--评论内容-->
+                                    <div class="c-main">
+                                        <div>
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                            这只是测试评论，并不具有意义
+                                        </div>
+                                        <div class="c-info">
+                                            <span>小翠翠</span>
+                                            <span>2018-07-26</span>
+                                            <a href="#" style="color:#00a67c;">回复</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="uc-comment-item">
+                                    <img class="userhead" src="res/userhead.png" alt="用户头像">
+                                    <!--评论内容-->
+                                    <div class="c-main">
+                                        <div>
+                                            这只是测试评论，并不具有意义
+                                        </div>
+                                        <div class="c-info">
+                                            <span>小翠翠</span>
+                                            <span>2018-07-26</span>
+                                            <a href="#" style="color:#00a67c;">回复</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <!--新建一个分支-->
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!--底部-->
+    <div class="footer">
+        <p>All Copyright Reserved by xiaodao</p>
+    </div>
+</body>
+<script>
+
+    $(document).ready(function() {
+         $("pre").addClass("prettyprint linenums")
+        prettyPrint();
+    });
+</script>
+</html>
