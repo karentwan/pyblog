@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04b86764-dad6-4f23-83a6-4b7dfa7a06fd" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/images/1.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/images/2.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/images/3.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/images/4.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -362,7 +358,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533477293398</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="add readme which is information file about the project">
+      <created>1551934804672</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1551934804672</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -433,7 +436,8 @@
     <MESSAGE value="modify style of comment and parameters of address bar delivery way" />
     <MESSAGE value="add code highlight function" />
     <MESSAGE value="show article's author and so on in article detail page" />
-    <option name="LAST_COMMIT_MESSAGE" value="show article's author and so on in article detail page" />
+    <MESSAGE value="add readme which is information file about the project" />
+    <option name="LAST_COMMIT_MESSAGE" value="add readme which is information file about the project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
